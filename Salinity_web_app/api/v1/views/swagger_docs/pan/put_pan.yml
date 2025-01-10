@@ -1,0 +1,86 @@
+tags:
+  - Pans
+
+summary: Updates a pan (Admin only operation)
+description: >
+  This endpoint allows an admin to update details of a salt pan, reservoir, or PCR.
+  Only admins can perform this action.
+
+parameters:
+  - in: path
+    name: pan.id
+    required: true
+    description: The unique ID of the pan to update
+    schema:
+      type: string
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          location:
+            type: string
+            description: The location of the pan
+          pan_id:
+            type: string
+            description: Unique user-defined identifier for the pan (used for quick identification)
+          size:
+            type: integer
+            description: Size of the pan
+          pan_type:
+            type: string
+            description: Type of pan (e.g., salt pan, reservoir, PCR)
+        example:
+          location: "Despa"
+          pan_id: "pan-1"
+          size: 1000
+          pan_type: "Salt Pan"
+
+responses:
+  200:
+    description: Successfully updated the pan
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The pan's unique UUID identifier (used for heavy operations)
+            location:
+              type: string
+              description: The location of the pan
+            pan_id:
+              type: string
+              description: User-defined identifier for the pan (used for quick identification)
+            size:
+              type: integer
+              description: Size of the pan
+            pan_type:
+              type: string
+              description: Type of pan (e.g., salt pan, reservoir, PCR)
+            created_at:
+              type: string
+              format: date-time
+              description: Timestamp when the pan was created
+            updated_at:
+              type: string
+              format: date-time
+              description: Timestamp when the pan was last updated
+        example:
+          id: "1234abcd-5678-efgh-9101-ijklmnopqrst"
+          location: "Despa"
+          pan_id: "pan-1"
+          size: 1000
+          pan_type: "Salt Pan"
+          created_at: "2025-01-08T10:30:00Z"
+          updated_at: "2025-01-08T10:35:00Z"
+  400:
+    description: Invalid request format or invalid attributes in the request body
+  404:
+    description: The pan with the specified `pan_id` does not exist
+  500:
+    description: Internal server error while saving changes to the database

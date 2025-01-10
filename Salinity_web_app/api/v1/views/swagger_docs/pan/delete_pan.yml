@@ -1,0 +1,32 @@
+tags:
+  - Pans
+
+summary: Delete a pan (Admin only operation)
+description: >
+  This endpoint allows an admin to delete a salt pan, reservoir, or PCR. Only admins can perform this action.
+
+parameters:
+  - in: path
+    name: pan_id
+    required: true
+    schema:
+      type: string
+    description: The UUID identifier of the pan to be deleted.
+
+responses:
+  200:
+    description: Successfully deleted the pan
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Confirmation message of the successful deletion
+        example:
+          message: "Pan deleted successfully"
+  404:
+    description: Pan not found
+  500:
+    description: Internal server error while deleting the pan

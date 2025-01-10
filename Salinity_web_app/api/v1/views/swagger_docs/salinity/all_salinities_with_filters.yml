@@ -1,0 +1,125 @@
+tags:
+  - Salinities
+
+summary: Retrieve a list of salinities with filtering and pagination support
+description: >
+  This endpoint allows users with the 'admin' role to retrieve a list of salinities filtered by various criteria such as date and pan type.
+  It supports pagination via the 'limit' and 'offset' query parameters.
+  Only users with the 'admin' role are authorized to use this operation.
+
+parameters:
+  - name: date
+    in: query
+    required: false
+    description: >
+      Filters the salinities by specific dates (or multiple dates).
+      The dates must be in ISO 8601 format (YYYY-MM-DD).
+    schema:
+      type: array
+      items:
+        type: string
+        example: "2025-01-01"
+  - name: pan_type
+    in: query
+    required: false
+    description: >
+      Filters the salinities by pan type. Valid options are 'Pan', 'PCR', and 'Reservoir'.
+    schema:
+      type: string
+      enum:
+        - Pan
+        - PCR
+        - Reservoir
+      example: "Pan"
+  - name: limit
+    in: query
+    required: false
+    description: >
+      Specifies the number of records per page. The default is 10.
+    schema:
+      type: integer
+      example: 10
+  - name: offset
+    in: query
+    required: false
+    description: >
+      Specifies the starting point for fetching records. The default is 0.
+    schema:
+      type: integer
+      example: 0
+
+responses:
+  200:
+    description: A paginated list of salinity records matching the filters
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            metadata:
+              type: object
+              properties:
+                total_records:
+                  type: integer
+                  description: Total number of records available for the given filters
+                limit:
+                  type: integer
+                  description: Number of records per page
+                offset:
+                  type: integer
+                  description: Starting point for the current page
+                returned_records:
+                  type: integer
+                  description: Number of records returned for the current page
+                next_page:
+                  type: string
+                  description: URL for the next page, if available
+                previous_page:
+                  type: string
+                  description: URL for the previous page, if available
+            salinities:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the salinity record
+                  salinity_level:
+                    type: integer
+                    description: The salinity level measured in the pan
+                  brine_level:
+                    type: integer
+                    description: The brine level measured in the pan
+                  pan_id:
+                    type: string
+                    description: The ID of the associated pan
+                  brine_attendant_id:
+                    type: string
+                    description: The ID of the brine attendant responsible for the measurement
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the salinity record was created
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the salinity record was last updated
+  400:
+    description: Invalid date format, pan_type, limit, or offset parameters
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: The error message describing the issue (e.g., "Invalid date format")
+  401:
+    description: Unauthorized (e.g., missing or invalid JWT)
+  403:
+    description: Forbidden (e.g., user does not have the 'admin' role)
+  404:
+    description: No salinities found for the given filters
+  500:
+    description: Internal server error while retrieving salinity records

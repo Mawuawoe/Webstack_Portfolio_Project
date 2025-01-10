@@ -1,0 +1,61 @@
+tags:
+  - Users
+
+summary: Retrieve all users
+description: >
+  This endpoint retrieves a list of all user objects from the database.
+  It is an admin-only operation, requiring a valid JWT token and admin role.
+
+parameters:
+  - name: Authorization
+    in: header
+    type: string
+    required: true
+    description: Bearer token for JWT-based authentication
+
+responses:
+  200:
+    description: A list of user objects
+    schema:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Unique identifier of the user
+          first_name:
+            type: string
+            description: User's first name
+          last_name:
+            type: string
+            description: User's last name
+          username:
+            type: string
+            description: User's username (unique)
+          email:
+            type: string
+            description: User's email address (unique)
+          password:
+            type: string
+            description: User's hashed password
+          contact_info:
+            type: string
+            description: User's contact information
+          role:
+            type: string
+            description: User's role (default is Brine_attendant)
+          created_at:
+            type: string
+            format: date-time
+            description: Timestamp when the user was created (ISO 8601 format)
+          updated_at:
+            type: string
+            format: date-time
+            description: Timestamp when the user was last updated (ISO 8601 format)
+  401:
+    description: Unauthorized access - JWT token is missing or invalid
+  403:
+    description: Forbidden - User does not have admin privileges
+  500:
+    description: Internal server error

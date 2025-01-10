@@ -1,0 +1,50 @@
+tags:
+  - Pans
+
+summary: Retrieve a pan (Admin only operation)
+description: >
+  This endpoint allows an admin to retrieve detailed information about a specific salt pan, reservoir, or PCR by its UUID.
+
+parameters:
+  - in: path
+    name: pan_id
+    required: true
+    schema:
+      type: string
+    description: The UUID identifier of the pan to retrieve.
+
+responses:
+  200:
+    description: Successfully retrieved the pan details
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique identifier of the pan (UUID)
+            location:
+              type: string
+              description: The location of the pan
+            pan_id:
+              type: string
+              description: The unique user-defined pan ID
+            size:
+              type: integer
+              description: The size of the pan
+            pan_type:
+              type: string
+              description: The type of pan (e.g., salt pan, reservoir, PCR)
+            created_at:
+              type: string
+              format: date-time
+              description: The timestamp when the pan was created
+            updated_at:
+              type: string
+              format: date-time
+              description: The timestamp when the pan was last updated
+  404:
+    description: Pan not found
+  500:
+    description: Internal server error while retrieving the pan

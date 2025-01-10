@@ -1,0 +1,55 @@
+tags:
+  - Salinities
+
+summary: Retrieve a specific salinity record
+description: >
+  This endpoint allows users with the 'admin' role to retrieve details of a specific salinity record
+  by its ID. The operation is restricted to administrative users only.
+
+parameters:
+  - name: salinity_id
+    in: path
+    required: true
+    description: The ID of the salinity record to retrieve
+    schema:
+      type: string
+
+responses:
+  200:
+    description: Salinity record retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier for the salinity record
+            salinity_level:
+              type: integer
+              description: The salinity level measured in the pan
+            brine_level:
+              type: integer
+              description: The brine level measured in the pan
+            pan_id:
+              type: string
+              description: The ID of the associated pan
+            brine_attendant_id:
+              type: string
+              description: The ID of the brine attendant responsible for the measurement
+            created_at:
+              type: string
+              format: date-time
+              description: Timestamp when the salinity record was created
+            updated_at:
+              type: string
+              format: date-time
+              description: Timestamp when the salinity record was last updated
+  404:
+    description: Salinity record not found
+  401:
+    description: Unauthorized (e.g., missing or invalid JWT)
+  403:
+    description: Forbidden (e.g., user does not have the 'admin' role)
+  500:
+    description: Internal server error while retrieving the salinity record

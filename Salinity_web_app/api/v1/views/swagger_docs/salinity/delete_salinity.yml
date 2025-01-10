@@ -1,0 +1,32 @@
+tags:
+  - Salinities
+
+summary: Delete a salinity record
+description: >
+  This endpoint allows users with the 'admin' role to delete a specific salinity record.
+  The operation is restricted to admin users only.
+
+parameters:
+  - name: salinity_id
+    in: path
+    required: true
+    description: The ID of the salinity record to delete
+    schema:
+      type: string
+
+responses:
+  200:
+    description: Successfully deleted the salinity record
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Empty JSON object indicating success
+  404:
+    description: Salinity record not found
+  401:
+    description: Unauthorized (e.g., missing or invalid JWT)
+  403:
+    description: Forbidden (e.g., user does not have the 'admin' role)
+  500:
+    description: Internal server error while deleting the salinity record

@@ -1,0 +1,106 @@
+tags:
+  - Users
+
+summary: Update a user
+description: >
+  This endpoint updates a user's details. Admins can update any user,
+  while non-admin users can only update their own information.
+  Requires a valid JWT token and appropriate roles.
+
+parameters:
+  - name: user_id
+    in: path
+    type: string
+    required: true
+    description: The ID of the user to update
+  - name: Authorization
+    in: header
+    type: string
+    required: true
+    description: Bearer token for JWT-based authentication
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          first_name:
+            type: string
+            description: User's updated first name
+          last_name:
+            type: string
+            description: User's updated last name
+          username:
+            type: string
+            description: User's updated username (must be unique)
+          email:
+            type: string
+            description: User's updated email (must be unique)
+          password:
+            type: string
+            description: User's updated password (hashed before saving)
+          contact_info:
+            type: string
+            description: User's updated contact information
+          role:
+            type: string
+            description: User's updated role (Admins only)
+      examples:
+        valid:
+          summary: A valid example
+          value:
+            first_name: "Joe"
+            last_name: "Ago"
+            username: "joe_ago"
+            email: "joeago@gmail.com"
+            password: "password"
+            contact_info: "0244002200"
+            role: "admin"
+
+responses:
+  200:
+    description: User updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the user
+            first_name:
+              type: string
+              description: User's first name
+            last_name:
+              type: string
+              description: User's last name
+            username:
+              type: string
+              description: User's username
+            email:
+              type: string
+              description: User's email
+            contact_info:
+              type: string
+              description: User's contact information
+            role:
+              type: string
+              description: User's role
+            created_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was created
+            updated_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was last updated
+  400:
+    description: Bad request - Request body is not JSON
+  403:
+    description: Forbidden - User does not have permission to update the specified user
+  404:
+    description: Not found - The user with the given ID does not exist
+  500:
+    description: Internal server error

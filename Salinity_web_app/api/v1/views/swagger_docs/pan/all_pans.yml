@@ -1,0 +1,44 @@
+tags:
+  - Pans
+
+summary: Retrieve the list of all pan objects (Admin only operation)
+description: >
+  This endpoint allows an admin to retrieve a list of all pan objects (salt pans, reservoirs, or PCRs) stored in the database.
+
+responses:
+  200:
+    description: Successfully retrieved the list of pans
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The unique identifier of the pan (UUID)
+              location:
+                type: string
+                description: The location of the pan
+              pan_id:
+                type: string
+                description: The unique pan ID given by the admin
+              size:
+                type: integer
+                description: The size of the pan
+              pan_type:
+                type: string
+                description: The type of pan (e.g., salt pan, reservoir, PCR)
+              created_at:
+                type: string
+                format: date-time
+                description: The timestamp when the pan was created
+              updated_at:
+                type: string
+                format: date-time
+                description: The timestamp when the pan was last updated
+  404:
+    description: No pans found
+  500:
+    description: Internal server error while retrieving the pans

@@ -1,0 +1,95 @@
+tags:
+  - Users
+
+summary: Initialize the first admin user
+description: >
+  This endpoint allows creating the first admin user if no admin exists in the system. 
+  This route is only accessible if no admin users are present in the database.
+  If an admin already exists, the route is disabled and returns a 403 error.
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          first_name:
+            type: string
+            description: The first name of the admin user
+          last_name:
+            type: string
+            description: The last name of the admin user
+          username:
+            type: string
+            description: The username of the admin user
+          email:
+            type: string
+            description: The email address of the admin user
+          contact_info:
+            type: string
+            description: Contact information for the admin user
+          password:
+            type: string
+            description: The password for the admin user (hashed before storing)
+        required:
+          - first_name
+          - last_name
+          - username
+          - email
+          - contact_info
+          - password
+
+responses:
+  201:
+    description: First admin user created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the created admin user
+            first_name:
+              type: string
+              description: The first name of the admin user
+            last_name:
+              type: string
+              description: The last name of the admin user
+            username:
+              type: string
+              description: The username of the admin user
+            email:
+              type: string
+              description: The email address of the admin user
+            contact_info:
+              type: string
+              description: The contact information for the admin user
+            role:
+              type: string
+              description: The role assigned to the user (admin)
+            created_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was created
+            updated_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was last updated
+        example:
+          id: "67890"
+          first_name: "Admin"
+          last_name: "User"
+          username: "adminuser"
+          email: "admin@gmail.com"
+          contact_info: "0244220022"
+          role: "admin"
+          created_at: "2025-01-01T12:00:00"
+          updated_at: "2025-01-01T12:00:00"
+  403:
+    description: Admin already exists. Route is disabled.
+  400:
+    description: Missing required fields in the request body.
+  500:
+    description: Internal server error

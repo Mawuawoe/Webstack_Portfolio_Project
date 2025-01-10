@@ -1,0 +1,76 @@
+tags:
+  - Users
+
+summary: Retrieve a user
+description: >
+  This endpoint allows an admin or a brine attendant to retrieve the details of a specific user.
+  Admins can retrieve any user's details, while brine attendants can only retrieve their own details.
+
+parameters:
+  - name: Authorization
+    in: header
+    type: string
+    required: true
+    description: Bearer token for JWT-based authentication
+  - name: user_id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Unique identifier of the user to retrieve
+
+responses:
+  200:
+    description: User retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the user
+            first_name:
+              type: string
+              description: User's first name
+            last_name:
+              type: string
+              description: User's last name
+            username:
+              type: string
+              description: Unique username of the user
+            email:
+              type: string
+              description: Email address of the user
+            contact_info:
+              type: string
+              description: Contact information of the user
+            role:
+              type: string
+              description: Role of the user (e.g., admin, brine_attendant)
+            created_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was created
+            updated_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was last updated
+        example:
+          id: "qwdfdslvfhmd.fggfdgdfdd"
+          first_name: "Joe"
+          last_name: "Ago"
+          username: "joeago"
+          email: "joeago@gmail.com"
+          contact_info: "0244002200"
+          role: "admin"
+          created_at: "2025-01-01T12:00:00"
+          updated_at: "2025-01-02T12:00:00"
+  403:
+    description: >
+      Forbidden - The current user does not have the necessary permissions to view the requested user's details.
+  404:
+    description: >
+      Not Found - The user with the given `user_id` does not exist.
+  500:
+    description: Internal server error

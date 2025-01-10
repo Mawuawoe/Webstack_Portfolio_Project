@@ -1,0 +1,73 @@
+tags:
+  - Salinities
+
+summary: Create a salinity record
+description: >
+  This endpoint allows users with the 'admin' or 'brine_attendant' roles to create a new salinity record.
+  The request must include JSON data with all the required fields.
+
+parameters:
+  - in: body
+    name: body
+    required: true
+    description: The JSON payload for creating a new salinity record
+    schema:
+      type: object
+      required:
+        - salinity_level
+        - brine_level
+        - pan_id
+        - brine_attendant_id
+      properties:
+        salinity_level:
+          type: integer
+          description: Salinity level measured in the pan
+        brine_level:
+          type: integer
+          description: Brine level measured in the pan
+        pan_id:
+          type: string
+          description: The ID of the associated pan
+        brine_attendant_id:
+          type: string
+          description: The ID of the brine attendant user
+
+responses:
+  201:
+    description: Successfully created the salinity record
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique ID of the salinity record
+            salinity_level:
+              type: integer
+              description: The salinity level
+            brine_level:
+              type: integer
+              description: The brine level
+            pan_id:
+              type: string
+              description: The ID of the associated pan
+            brine_attendant_id:
+              type: string
+              description: The ID of the brine attendant user
+            created_at:
+              type: string
+              format: date-time
+              description: When the salinity record was created
+            updated_at:
+              type: string
+              format: date-time
+              description: When the salinity record was last updated
+  400:
+    description: Bad request (e.g., missing required fields or invalid JSON payload)
+  401:
+    description: Unauthorized (e.g., missing or invalid JWT)
+  403:
+    description: Forbidden (e.g., user does not have the required role)
+  500:
+    description: Internal server error while creating the salinity record

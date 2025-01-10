@@ -1,0 +1,59 @@
+tags:
+  - Salinities
+
+summary: Export salinity data as a CSV file
+description: >
+  This endpoint allows users with the 'admin' role to export salinity data as a CSV file.
+  Users can filter the salinities by date and pan type using query parameters.
+  The data is returned as a CSV file for download.
+
+parameters:
+  - name: date
+    in: query
+    required: false
+    description: >
+      Filters the salinities by specific date(s). Dates must be in ISO 8601 format (YYYY-MM-DD).
+    schema:
+      type: array
+      items:
+        type: string
+        example: "2025-01-01"
+  - name: pan_type
+    in: query
+    required: false
+    description: >
+      Filters the salinities by pan type. Valid options are 'Pan', 'PCR', and 'Reservoir'.
+    schema:
+      type: string
+      enum:
+        - Pan
+        - PCR
+        - Reservoir
+      example: "Pan"
+
+responses:
+  200:
+    description: A CSV file containing the salinity data
+    content:
+      text/csv:
+        schema:
+          type: string
+          format: binary
+  400:
+    description: Invalid date format, pan_type, or other parameters
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: The error message describing the issue (e.g., "Invalid date format")
+  401:
+    description: Unauthorized (e.g., missing or invalid JWT)
+  403:
+    description: Forbidden (e.g., user does not have the 'admin' role)
+  404:
+    description: No salinities found for the given filters
+  500:
+    description: Internal server error while exporting salinity data

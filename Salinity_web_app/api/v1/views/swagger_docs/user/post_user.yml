@@ -1,0 +1,111 @@
+tags:
+  - Users
+
+summary: Create a new user
+description: >
+  This endpoint allows an admin to create a new user. The request must include
+  all required fields. Only admins have the permission to access this endpoint.
+
+parameters:
+  - name: Authorization
+    in: header
+    type: string
+    required: true
+    description: Bearer token for JWT-based authentication
+
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+          - first_name
+          - last_name
+          - username
+          - contact_info
+          - role
+        properties:
+          email:
+            type: string
+            format: email
+            description: The unique email of the user
+          password:
+            type: string
+            description: The password of the user (hashed before saving)
+          first_name:
+            type: string
+            description: User's first name
+          last_name:
+            type: string
+            description: User's last name
+          username:
+            type: string
+            description: The unique username of the user
+          contact_info:
+            type: string
+            description: User's contact information
+          role:
+            type: string
+            description: The role assigned to the user (e.g., admin, brine_attendant)
+      examples:
+        valid:
+          summary: A valid example
+          value:
+            email: "joeago@gmail.com"
+            password: "password"
+            first_name: "John"
+            last_name: "Ago"
+            username: "joeago"
+            contact_info: "0244002200"
+            role: "brine_attendant"
+
+responses:
+  201:
+    description: User created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the user
+            first_name:
+              type: string
+              description: User's first name
+            last_name:
+              type: string
+              description: User's last name
+            username:
+              type: string
+              description: User's username
+            email:
+              type: string
+              description: User's email
+            contact_info:
+              type: string
+              description: User's contact information
+            role:
+              type: string
+              description: User's role
+            created_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was created
+            updated_at:
+              type: string
+              format: date-time
+              description: Timestamp when the user was last updated
+  400:
+    description: >
+      Bad request - Could occur due to:
+      - Request body is not JSON
+      - Missing required fields
+      - Duplicate or invalid data
+  403:
+    description: Forbidden - User does not have admin privileges
+  500:
+    description: Internal server error

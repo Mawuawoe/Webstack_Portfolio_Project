@@ -1,0 +1,72 @@
+tags:
+  - Salinities
+
+summary: Updates a salinity record (Admin only operation)
+description: >
+  This endpoint allows an admin to update an existing salinity record.
+  Only attributes that exist on the salinity model can be updated, while certain fields like `id`, `created_at`, and `updated_at` are ignored.
+
+parameters:
+  - in: path
+    name: salinity_id
+    required: true
+    description: The unique ID of the salinity record to update
+    schema:
+      type: string
+  - in: body
+    name: body
+    required: true
+    description: The JSON payload containing the attributes to update
+    schema:
+      type: object
+      properties:
+        salinity_level:
+          type: integer
+          description: Updated salinity level measured in the pan
+        brine_level:
+          type: integer
+          description: Updated brine level measured in the pan
+        pan_id:
+          type: string
+          description: The ID of the associated pan
+        brine_attendant_id:
+          type: string
+          description: The ID of the brine attendant user
+
+responses:
+  200:
+    description: Successfully updated the salinity record
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique ID of the salinity record
+            salinity_level:
+              type: integer
+              description: The updated salinity level
+            brine_level:
+              type: integer
+              description: The updated brine level
+            pan_id:
+              type: string
+              description: The ID of the associated pan
+            brine_attendant_id:
+              type: string
+              description: The ID of the brine attendant user
+            created_at:
+              type: string
+              format: date-time
+              description: When the salinity record was created
+            updated_at:
+              type: string
+              format: date-time
+              description: When the salinity record was last updated
+  400:
+    description: Invalid request (e.g., missing required attributes or invalid fields in the JSON payload)
+  404:
+    description: Salinity record not found
+  500:
+    description: Internal server error while updating the salinity record

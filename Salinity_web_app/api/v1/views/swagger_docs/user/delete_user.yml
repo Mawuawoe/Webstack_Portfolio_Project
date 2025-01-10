@@ -1,0 +1,39 @@
+tags:
+  - Users
+
+summary: Delete a user
+description: >
+  This endpoint allows an admin or a brine attendant to delete a user. 
+  Admins can delete any user, while brine attendants can only delete their own account.
+
+parameters:
+  - name: Authorization
+    in: header
+    type: string
+    required: true
+    description: Bearer token for JWT-based authentication
+  - name: user_id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Unique identifier of the user to be deleted
+
+responses:
+  200:
+    description: User deleted successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Empty response
+          example: {}
+  403:
+    description: >
+      Forbidden - The current user does not have the necessary permissions to delete this user.
+  404:
+    description: >
+      Not Found - The user with the given `user_id` does not exist.
+  500:
+    description: Internal server error
+
