@@ -1,4 +1,4 @@
-# ALX Portfolio Project
+# Webstack Portfolio Project
 
 This project fulfills a requirement for the online Software Engineering program at ALX, where learners are tasked with creating their own projects to demonstrate their understanding of backend and frontend concepts. For my project, I developed the Salinity App for Electrochem GH LTD, a salt production company in Ghana.
 
