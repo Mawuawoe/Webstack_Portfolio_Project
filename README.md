@@ -13,14 +13,9 @@ The Salinity App is a specialized web application designed to streamline and aut
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Mawuawoe/ALX-Portfolio-Project.git
+    git clone https://github.com/Mawuawoe/Webstack_Portfolio_Project/
     ```
-2. Navigate into the project directory:
-    ```bash
-    cd Salinity/webflask/app.py
-    ```
-
-3. Install the necessary dependencies:
+2. Install the necessary dependencies:
     ```bash
     pip install -r requirements.txt
     ```
@@ -30,11 +25,14 @@ To start,
 after installing the requirement, setup your database
 run:
 ```bash
-mysql -uroot -p < setup_mysql.sql
+mysql -uroot -p < /utils/setup_mysql.sql
+MYSQL_USER=salinity MYSQL_PWD=admin_pwd MYSQL_HOST=localhost MYSQL_DB=salinity_db TYPE_OF_STORAGE=db ./console.py < ./utils/create_pans.txt
 ```
+
 run:
 ```bash
-MYSQL_USER=your_db_user MYSQL_PWD=your_password MYSQL_HOST=localhost MYSQL_DB=your_db TYPE_OF_STORAGE=db ./app.py
+MYSQL_USER=salinity MYSQL_PWD=admin_pwd MYSQL_HOST=localhost MYSQL_DB=salinity_db TYPE_OF_STORAGE=db ./app.py
+
 ```
 
 The Salinity App is designed for efficient usage by both Brine Attendants and Production Managers in the salt production process. Here’s an overview of how each user group interacts with the app:
@@ -63,6 +61,6 @@ The app allows Production Managers to filter the data by specific criteria, such
 Reports can be exported CSV formats for offline analysis or record-keeping.
 
 Overall Benefits
-Efficiency: By automating data collection and providing real-time access to information, the Salinity App enhances operational efficiency in monitoring salinity levels.
+Efficiency: By streamlining data collection and providing real-time access to information, the Salinity App enhances operational efficiency in monitoring salinity levels.
 Improved Decision-Making: The app’s reporting and visualization features enable Production Managers to make data-driven decisions that optimize the salt production process.
 User-Friendly Interface: The intuitive design of the app ensures that both Brine Attendants and Production Managers can navigate it easily, reducing training time and improving user adoption.
