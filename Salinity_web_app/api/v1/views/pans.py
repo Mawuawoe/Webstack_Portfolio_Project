@@ -136,5 +136,5 @@ def put_pan(pan_id):
     except Exception as e:
         abort(500, description=str(e))  # Handle potential database save errors
 
-    return make_response(jsonify(pan.to_dict()), 200)
+    return make_response(jsonify({"message": "Pan updated successfully"}), 200)
 

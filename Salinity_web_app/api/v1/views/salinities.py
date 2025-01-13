@@ -7,7 +7,7 @@ from flask import abort, jsonify, make_response, request
 import pandas as pd
 import io
 from flask_jwt_extended import jwt_required
-from api.v1.utils.auth import role_required, get_current_user
+from api.v1.utils.auth import role_required
 from flasgger.utils import swag_from
 from datetime import datetime
 
@@ -184,7 +184,7 @@ def delete_salinity(salinity_id):
         abort(500, description=f"Error deleting salinity: {str(e)}")
     
     # Return a 200 OK response with an empty JSON object
-    return make_response(jsonify({}), 200)
+    return make_response(jsonify({"message": "Salinity data deleted successfully"}), 200)
 
 
 @app_views.route('/salinities', methods=['POST'], strict_slashes=False)
@@ -260,7 +260,7 @@ def put_salinity(salinity_id):
     salinity.save()
 
     # Return the updated salinity object as a JSON response
-    return make_response(jsonify(salinity.to_dict()), 200)
+    return make_response(jsonify({"message": "Salinity data updated successfully"}), 200)
 
 
 @app_views.route('/salinities/export', methods=['GET'], strict_slashes=False)
