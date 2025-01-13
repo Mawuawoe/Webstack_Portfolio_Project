@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Web Application using Flask for Managing Salinity Data
+Web Application serving both the frontend and api
 """
-from flask import Flask
+from flask import Flask, make_response, jsonify
 from flask_login import LoginManager
 import sys
 sys.path.append("../")
@@ -16,6 +16,9 @@ from webflask.blueprints.brine_attendant import brine_attendant
 from webflask.blueprints.landing_page import landing_page_bp
 import os
 from utils.seeded_data import seed_data
+from api.v1.views import app_views
+from flask_jwt_extended import JWTManager
+from flasgger import Swagger
 
 
 app = Flask(
@@ -25,6 +28,11 @@ app = Flask(
 )
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'default_secret_key') # secret key for session management
 app.config['SESSION_COOKIE_SECURE'] = True  # or False for HTTP
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+app.config['JWT_SECRET_KEY'] = 'my_jwt_secret_key'
+
+# jwt login
+jwt = JWTManager(app)
 
 
 # Flask-Login setup for session management
@@ -47,6 +55,28 @@ app.register_blueprint(report_bp)
 app.register_blueprint(admin_bp)
 app.register_blueprint(brine_attendant)
 app.register_blueprint(landing_page_bp)
+app.register_blueprint(app_views)
+
+
+app.config['SWAGGER'] = {
+    'title': 'Webstack_portfolio_project- Salinity Web_app Restful API',
+    'uiversion': 3
+}
+
+
+Swagger(app)
+
+
+@app.errorhandler(404)
+def not_founf(error):
+    """
+    404 Error
+
+    responses:
+    404:
+        description: a resource was not found
+    """
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 @app.teardown_appcontext
