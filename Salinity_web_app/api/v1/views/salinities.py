@@ -7,9 +7,10 @@ from flask import abort, jsonify, make_response, request
 import pandas as pd
 import io
 from flask_jwt_extended import jwt_required
-from api.v1.utils.auth import role_required
+from api.v1.utils.auth import role_required, get_current_user
 from flasgger.utils import swag_from
 from datetime import datetime
+from webflask.blueprints.brine_attendant import get_id_of_pan
 
 
 @app_views.route('/salinities', methods=['GET'], strict_slashes=False)
@@ -139,7 +140,7 @@ def get_salinities_date(dates):
 
 
 
-@app_views.route('/salinities/<salinity_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/salinity/<salinity_id>', methods=['GET'], strict_slashes=False)
 @jwt_required()
 @role_required(["admin"])
 @swag_from('swagger_docs/salinity/get_salinity.yml')
@@ -202,16 +203,28 @@ def post_salinity():
     
     # Extract JSON data from the request
     data = request.get_json()
+
+    # Authenticate
+    current_user = get_current_user()
     
     # Ensure required fields are present in the data
-    required_fields = ['salinity_level', 'brine_level', 'pan_id', 'brine_attendant_id']
+    required_fields = ['salinity_level', 'brine_level', 'pan_id']
     for field in required_fields:
         if field not in data:
             abort(400, description=f"Missing {field}")
     
+    # construct data to intialise salinity
+    id_pan = get_id_of_pan(data['pan_id'])
+    new_data = {
+        'salinity_level': data['salinity_level'],
+        'brine_level': data['brine_level'],
+        'pan_id': id_pan,
+        'brine_attendant_id': current_user.id
+    }
     # Create a new Salinity instance using the provided data
     try:
-        instance = Salinity(**data)
+        instance = Salinity(**new_data)
+
     except Exception as e:
         # If there are any issues creating the instance, return an error
         abort(400, description=f"Error creating salinity: {str(e)}")

@@ -3,7 +3,9 @@
 # Create a virtual environment if it doesn't already exist
 if [ ! -d "venv" ]; then
     echo "Creating virtual environment..."
-    python3 -m venv venv
+    sudo apt update
+    sudo apt install python3.8-venv
+    sudo python3 -m venv venv
 fi
 
 # Install dependencies

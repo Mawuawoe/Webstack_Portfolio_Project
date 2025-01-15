@@ -70,7 +70,7 @@ def dashboard():
             }
 
     return render_template('dashboard.html',
-                           is_admin=current_user.email == admin_email,
+                           is_admin=current_user.role == "admin",
                            latest_salinity_records=latest_records_dict,
                            selected_filter=selected_filter,
                            today_records=today_records_dict,
