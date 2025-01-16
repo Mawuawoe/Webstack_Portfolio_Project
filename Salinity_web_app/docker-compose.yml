@@ -9,6 +9,7 @@ services:
       MYSQL_HOST: db
       MYSQL_DB: salinity_db
       TYPE_OF_STORAGE: db
+      MYSQL_PORT: 3307
     volumes:
       - .:/app
     depends_on:
