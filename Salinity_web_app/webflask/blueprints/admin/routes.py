@@ -21,9 +21,7 @@ def create_admin():
     """
     # Check if an admin user already exists
     if request.method == 'GET':
-        print("yes")
         existing_admin = storage.get_first_by(User, role="admin")
-        print(existing_admin)
         if existing_admin:
             flash('Admin user already exists. Please log in.', 'info')
             print("Flash message sent: 'An admin user already exists. Please log in.'")

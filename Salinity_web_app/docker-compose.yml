@@ -1,0 +1,33 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      MYSQL_USER: salinity
+      MYSQL_PWD: admin_pwd
+      MYSQL_HOST: db
+      MYSQL_DB: salinity_db
+      TYPE_OF_STORAGE: db
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    networks:
+      - webnet
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: salinity_db
+      MYSQL_USER: salinity
+      MYSQL_PASSWORD: admin_pwd
+    ports:
+      - "3307:3306"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
