@@ -18,7 +18,7 @@ This is a capstone project for the online Software Engineering program at ALX, w
 - **Frontend**: HTML, CSS, JavaScript.  
 - **Database**: MySQL.  
 - **Containerization**: Docker and Docker Compose.  
-- **Others**: cURL for API testing.
+- **Others**: cURL and Postman for API testing.
 
 
 ## Installation
