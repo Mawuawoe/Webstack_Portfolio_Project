@@ -62,9 +62,12 @@ Ensure the following are installed on your machine:
    ```bash
    ./setup.sh
    ```
+---
+
 **Warning: Running without Docker requires the correct Python version and dependencies installed. Compatibility issues may arise if your system is not configured properly.**
 
 ---
+
 
 ## Application Structure
 
@@ -73,7 +76,6 @@ The **Salinity App** has a dual-route setup:
 1. **Frontend Routes**: Serve the web-based user interface.
 2. **API Routes**: Expose RESTful endpoints under the `/api/v1/` namespace for external programmatic interaction.
 
----
 
 ### Frontend Routes
 
@@ -81,12 +83,12 @@ The following routes define the user interface and their functionalities:
 
 | **Route**          | **Description**                                                                                                   |
 |---------------------|-------------------------------------------------------------------------------------------------------------------|
-| `/`                 | **Landing Page**: Provides information about the app. Contains a "Get Started" button. Redirects to `/register` for the first admin user registration, or to `/login` if an admin user exists. Unprotected route. |
-| `/register`         | **Register Page**: Allows the first admin user to register if no admin exists.                                   |
-| `/login`            | **Login Page**: Allows users to log in and generates a JWT for authenticated access. Unprotected route.          |
-| `/dashboard`        | **Dashboard**: Displays salinity records on a site map, with live updates as new data is submitted.              |
+| `/`                 | **Landing Page**: Provides information about the app. Contains a "Get Started" button to register first admin user and sign in button to login user. |
+| `/create_admin`     | **Create Admin**: Allows the first admin user to register if no admin exists.                                   |
+| `/login`            | **Login Page**: Allows users to log in.          |
+| `/dashboard`        | **Dashboard**: Dashboard view for Production Managers to monitor salinity levels.             |
 | `/data_entry`       | **Data Entry**: Used by Brine Attendants to submit salinity and brine level records.                             |
-| `/reports`          | **Reports**: Allows managers to generate and download reports based on selected time periods.                    |
+| `/reports`          | **Reports**: Allows managers to generate and download reports based on selected filters.                    |
 | `/create_user`      | **Create User**: Allows admins to create other users with specified roles. Accessible only to admin users.        |
 | `/logout`           | **Logout**: Logs the user out and invalidates their session.                                                     |
 
