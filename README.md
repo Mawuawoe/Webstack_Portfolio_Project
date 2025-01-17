@@ -58,7 +58,7 @@ Ensure the following are installed on your machine:
    git clone https://github.com/Mawuawoe/Webstack_Portfolio_Project/
    ```
 
-2. Run the app:
+2. **Run the app**:
    ```bash
    ./setup.sh
    ```
