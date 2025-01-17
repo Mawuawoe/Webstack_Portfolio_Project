@@ -60,7 +60,7 @@ Ensure the following are installed on your machine:
 
 2. Run the app:
    ```bash
-  ./setup.sh
+   ./setup.sh
    ```
 **Warning: Running without Docker requires the correct Python version and dependencies installed. Compatibility issues may arise if your system is not configured properly.**
 
