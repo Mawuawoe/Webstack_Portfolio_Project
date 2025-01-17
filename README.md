@@ -105,7 +105,7 @@ http://localhost:5000/api/v1
 
 | **HTTP Method** | **Endpoint**               | **Description**                                                                                     |
 |------------------|----------------------------|-----------------------------------------------------------------------------------------------------|
-| `POST`          | `/initialize_first_user`   | Registers the first admin user. This route is disabled if an admin user already exists.            |
+| `POST`          | `/initialize_first_admin`   | Registers the first admin user. This route is disabled if an admin user already exists.            |
 | `POST`          | `/auth/login`              | Logs in the user and generates a JWT for authorization.                                            |
 | `GET`           | `/users`                   | Retrieves all users. Requires authorization.                                                       |
 | `POST`          | `/users`                   | Creates a new user. Requires admin authorization.                                                  |
@@ -117,11 +117,11 @@ http://localhost:5000/api/v1
 | `GET`           | `/pans/<pan_id>`           | Retrieves details of a specific pan. Requires authorization.                                       |
 | `PUT`           | `/pans/<pan_id>`           | Updates a specific pan. Requires admin authorization.                                              |
 | `DELETE`        | `/pans/<pan_id>`           | Deletes a pan. Requires admin authorization.                                                       |
-| `GET`           | `/salinity`                | Retrieves all salinity records. Supports filters (e.g., by date, pan type) and pagination. Requires authorization. |
-| `POST`          | `/salinity`                | Logs a new salinity record. Requires authorization.                                                |
+| `GET`           | `/salinities`              | Retrieves all salinity records. Supports filters (e.g., by date, pan type) and pagination. Requires authorization. |
+| `POST`          | `/salinities`              | Logs a new salinity record. Requires authorization.                                                |
 | `GET`           | `/salinity/<salinity_id>`  | Retrieves details of a specific salinity record. Requires authorization.                           |
-| `PUT`           | `/salinity/<salinity_id>`  | Updates a specific salinity record. Requires admin authorization.                                  |
-| `DELETE`        | `/salinity/<salinity_id>`  | Deletes a salinity record. Requires admin authorization.                                          
+| `PUT`           | `/salinities/<salinity_id>`| Updates a specific salinity record. Requires admin authorization.                                  |
+| `DELETE`        | `/salinities/<salinity_id>`| Deletes a salinity record. Requires admin authorization.                                          
 
 #### Salinity Query Parameters
 
