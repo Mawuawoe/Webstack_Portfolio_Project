@@ -4,7 +4,6 @@ The Salinity App is a specialized web application designed to streamline and aut
 
 This is a capstone project for the online Software Engineering program at ALX, where learners are tasked with creating their own projects to demonstrate their understanding of backend and frontend concepts. For my project, I developed the Salinity App for Electrochem GH LTD, a salt production company in Ghana.
 
----
 
 ## Features
 
@@ -13,16 +12,14 @@ This is a capstone project for the online Software Engineering program at ALX, w
 - **Reporting**: Managers can generate reports based on specific time periods, and export the data in formats like CSV
 - **Role-Based Access Control**: Role-based access ensures users only have access to the features relevant to their role (e.g., Admins, Brine Attendants).
 
----
 
 ## Technologies Used  
 - **Backend**: Flask, SQLAlchemy, JWT for authentication.  
 - **Frontend**: HTML, CSS, JavaScript.  
 - **Database**: MySQL.  
 - **Containerization**: Docker and Docker Compose.  
-- **Others**: cURL for API testing.  
+- **Others**: cURL for API testing.
 
----
 
 ## Installation
 
@@ -42,14 +39,14 @@ Ensure the following are installed on your machine:
    cd salinity-web-app
    ```
 
-2. Build the Docker container:
+2. **Build the Docker container**:
    ```bash
    docker-compose build
    ```
 
-3. Run the app using Docker:
+3. **Run the app using Docker**:
    ```bash
-  docker-compose up
+   docker-compose up
    ```
 
 4. Visit the app in your browser at [http://localhost:5000](http://localhost:5000).
