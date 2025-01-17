@@ -168,6 +168,6 @@ Report Page Image
 
 ## Overall Benefits
 
-**Efficiency**: By streamlining data collection and providing real-time access to information, the Salinity App enhances operational efficiency in monitoring salinity levels.
-**Improved Decision-Making**: The app’s reporting and visualization features enable Production Managers to make data-driven decisions that optimize the salt production process.
-**User-Friendly Interface**: The intuitive design of the app ensures that both Brine Attendants and Production Managers can navigate it easily, reducing training time and improving user adoption.
+- **Efficiency**: By streamlining data collection and providing real-time access to information, the Salinity App enhances operational efficiency in monitoring salinity levels.
+- **Improved Decision-Making**: The app’s reporting and visualization features enable Production Managers to make data-driven decisions that optimize the salt production process.
+- **User-Friendly Interface**: The intuitive design of the app ensures that both Brine Attendants and Production Managers can navigate it easily, reducing training time and improving user adoption.
