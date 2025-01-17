@@ -84,7 +84,7 @@ The following routes define the user interface and their functionalities:
 | **Route**          | **Description**                                                                                                   |
 |---------------------|-------------------------------------------------------------------------------------------------------------------|
 | `/`                 | **Landing Page**: Provides information about the app. Contains a "Get Started" button to register first admin user and sign in button to login user. |
-| `/create_admin`     | **Create Admin**: Allows the first admin user to register if no admin exists.                                   |
+| `/create_admin`     | **Create Admin**: To create first admin user if no admin exists.                                   |
 | `/login`            | **Login Page**: Allows users to log in.          |
 | `/dashboard`        | **Dashboard**: Dashboard view for Production Managers to monitor salinity levels.             |
 | `/data_entry`       | **Data Entry**: Used by Brine Attendants to submit salinity and brine level records.                             |
@@ -92,14 +92,13 @@ The following routes define the user interface and their functionalities:
 | `/create_user`      | **Create User**: Allows admins to create other users with specified roles. Accessible only to admin users.        |
 | `/logout`           | **Logout**: Logs the user out and invalidates their session.                                                     |
 
----
 
 ### API Services
 
 The **API** operates under the `/api/v1/` namespace and provides endpoints for programmatic access. All API requests and responses are JSON-based.
 
 #### Base URL
-[http://localhost:5000/api/v1]
+http://localhost:5000/api/v1
 
 
 #### API Endpoints
