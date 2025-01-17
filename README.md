@@ -125,9 +125,9 @@ http://localhost:5000/api/v1
 
 #### Salinity Query Parameters
 
-The `/salinity` endpoint supports the following query parameters for filtering and pagination:
+The `/salinities` endpoint supports the following query parameters for filtering and pagination:
 
-- `date`: Filter records by a specific date or date range.
+- `date`: Filter records by a specific date or dates.
 - `pan_type`: Filter records by the type of pan.
 - `offset`: Pagination offset. Default is `0`.
 - `limit`: Number of items per page. Default is `10`.
@@ -142,7 +142,6 @@ curl -X GET "http://localhost:5000/api/v1/salinity?date=2024-01-01&pan_type=Pan&
 -H "Authorization: Bearer <your_token>"
 ```
 
----
 
 ## Usage
 
@@ -158,8 +157,10 @@ curl -X GET "http://localhost:5000/api/v1/salinity?date=2024-01-01&pan_type=Pan&
 - Use the Reports page to filter data by location, date, or other parameters.
 - Export detailed reports in CSV format.
 
-![Dashboard Screenshot](./ALXPP1.jpg)
-![Dashboard Screenshot](./ALXPP2.jpg)
+
+## Screen Shots
+![Dashboard Screenshot](/images/ALXPP1.jpg)
+![Dashboard Screenshot](/images/ALXPP2.jpg)
 
 Overall Benefits
 Efficiency: By streamlining data collection and providing real-time access to information, the Salinity App enhances operational efficiency in monitoring salinity levels.
