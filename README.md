@@ -158,9 +158,9 @@ curl -X GET "http://localhost:5000/api/v1/salinity?date=2024-01-01&pan_type=Pan&
 - Export detailed reports in CSV format.
 
 
-## Screen Shots
-![Dashboard Screenshot](/images/ALX_PP1.jpg)
-![Dashboard Screenshot](/images/ALX_PP2.jpg)
+## Some Screen Shots
+![Dashboard Screenshot](/images/ALX_PP1.jpg "Dashboad Image")
+![Dashboard Screenshot](/images/ALX_PP2.jpg "Report Page Image")
 
 Overall Benefits
 Efficiency: By streamlining data collection and providing real-time access to information, the Salinity App enhances operational efficiency in monitoring salinity levels.
